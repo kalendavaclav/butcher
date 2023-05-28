@@ -1,0 +1,64 @@
+swagger: "2.0"
+info:
+  title: InsertButcherDelivery
+  description: Insert a Butcher Delivery with IDZAVOZ as parameter and other attributes as payload
+  version: "1.0"
+host: your-api-host.com
+basePath: /api
+
+paths:
+  /butcherdelivery/{IDZAVOZ}:
+    post:
+      summary: Insert Butcher Delivery
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: IDZAVOZ
+          description: IDZAVOZ parameter for Butcher Delivery
+          required: true
+          type: string
+        - in: body
+          name: requestBody
+          description: JSON payload for inserting a Butcher Delivery
+          required: true
+          schema:
+            type: object
+            properties:
+              SPZ:
+                type: string
+              POZNAMKA:
+                type: string
+              ODESILA:
+                type: string
+              PRIJIMA:
+                type: string
+              ZaznamyItems:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    EAN:
+                      type: string
+                    VYROBEK:
+                      type: string
+                    SARZE:
+                      type: string
+                    HMOTNOST:
+                      type: number
+              ZaznamyCovers:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    NAZEV:
+                      type: string
+                    POCET:
+                      type: integer
+      responses:
+        200:
+          description: Butcher Delivery inserted successfully
+        400:
+          description: Invalid request payload
